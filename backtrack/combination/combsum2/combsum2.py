@@ -6,9 +6,12 @@
 # Backtracking: 
 #       Remember to set all values and path back before going to another branch
 #       Remember to use copy before append
+candidates = [1,3,46,1,3,9]
+target = 47
 
 class Solution:
-    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+    def combinationSum2(self, candidates, target: int):
+        count = [0]
         dic = {}
         for i in candidates:
             if i not in dic:
@@ -22,6 +25,7 @@ class Solution:
                 return
             if target == 0:
                 res.append(current.copy())
+                count[0] += 1
                 return
             if idx >= len(keys):
                 return 
@@ -36,6 +40,9 @@ class Solution:
                 target += key
             dfs(idx + 1, target)
         dfs(0, target)
+        print(count)
         return res
+solution = Solution()
+print(solution.combinationSum2(candidates, target));
         
 
